@@ -8,7 +8,7 @@ tempdir = "0.3.5"
 glium_sdl2 = "0.15"
 sdl2 = "0.30"
 glium = "0.18"
-nalgebra = "0.16"
+nalgebra = { version = "0.16.0", features = ['serde-serialize'] }
 lmdb-rs = "0.7.6"
 serde = "1"
 serde_derive = "1"
@@ -19,3 +19,5 @@ byteorder = {version = "0.5.3"}
 #uuid = { version = "0.6.5", features = ["v4", "v5", "serde"] }
 uuid = { git = "https://github.com/uuid-rs/uuid", features = ["v4", "v5", "serde"] }
 noise = "0.5.1"
+fnv = "1.0.3"
+snap = "0.2"

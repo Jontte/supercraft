@@ -4,21 +4,23 @@ extern crate glium;
 extern crate glium_sdl2;
 extern crate sdl2;
 
-extern crate nalgebra;
 extern crate byteorder;
 extern crate lmdb_rs as lmdb;
-extern crate uuid;
+extern crate nalgebra;
 extern crate rmp_serde;
 extern crate serde;
+extern crate uuid;
 #[macro_use]
 extern crate serde_derive;
-extern crate tempdir;
+extern crate fnv;
 extern crate noise;
+extern crate tempdir;
+extern crate snap;
 
-mod world;
-mod shaders;
-mod database;
 mod chunk;
+mod database;
+mod shaders;
+mod world;
 
 fn main() {
     use glium_sdl2::DisplayBuild;
@@ -26,7 +28,8 @@ fn main() {
     let sdl_context = sdl2::init().unwrap();
     let video_subsystem = sdl_context.video().unwrap();
 
-    let display = video_subsystem.window("My window", 800, 600)
+    let display = video_subsystem
+        .window("My window", 800, 600)
         .resizable()
         .build_glium()
         .unwrap();
@@ -39,14 +42,13 @@ fn main() {
     let mut event_pump = sdl_context.event_pump().unwrap();
 
     while running {
-
         for event in event_pump.poll_iter() {
             use sdl2::event::Event;
 
             match event {
                 Event::Quit { .. } => {
                     running = false;
-                },
+                }
                 ev => world.process_input(&ev),
             }
         }
